@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "472591108712",
+    "project_id": "gokulchat4545",
+    "storage_bucket": "gokulchat4545.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:472591108712:android:983acdf22194fb5f2e49dd",
+        "android_client_info": {
+          "package_name": "com.gokulsundar4545.gokulchat4545"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "472591108712-26cnmf4kp9f9k4dus9epg8c967fae9b2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gokulsundar4545.gokulchat4545",
+            "certificate_hash": "953f8b5c023a5e920c12b84ff9dfe209de4c85fe"
+          }
+        },
+        {
+          "client_id": "472591108712-ftk9fekjajk9jf3s6vi5coj30ndu64vp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIORAUzDzVGIWlOMMTbPEZDuWY9xtF7H8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "472591108712-ftk9fekjajk9jf3s6vi5coj30ndu64vp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

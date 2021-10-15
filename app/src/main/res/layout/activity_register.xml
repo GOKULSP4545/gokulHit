@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity">
+
+
+    <TextView
+        android:id="@+id/singTextview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Or Sign in Using"
+        android:textColor="@color/black"
+        android:fontFamily="@font/font1"
+        android:textSize="17dp"
+        android:layout_below="@id/btnRegistration"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        />
+    <TextView
+        android:id="@+id/AlreadyYouHaveAnAccount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign In"
+        android:textColor="@color/blue"
+        android:fontFamily="@font/font1"
+        android:textSize="17dp"
+        android:layout_below="@id/singTextview"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        />
+
+    <Button
+        android:id="@+id/btnRegistration"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/PhoneNo1"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/font1"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/btn"
+        android:textStyle="italic"
+        android:text="Register"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="158dp"
+        android:layout_height="61dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:text="Sign Up"
+        android:textColor="@color/black"
+        android:fontFamily="@font/font1"
+        android:textStyle="italic"
+        android:textSize="40dp" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputName1"
+        android:layout_width="350dp"
+        android:layout_height="71dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:hint="Type your name"
+        android:layout_below="@id/textView"
+        app:startIconDrawable="@drawable/ic_baseline_person_24"
+
+        >
+
+        <EditText
+            android:id="@+id/inputName"
+            android:layout_width="360dp"
+            android:layout_height="64dp"
+
+            android:textColor="@color/black"
+            android:textSize="20dp"></EditText>
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputEmail1"
+        android:layout_width="350dp"
+        android:layout_height="71dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:hint="Type your Email"
+        android:layout_below="@id/inputName1"
+        app:startIconDrawable="@drawable/ic_baseline_email_24"
+        >
+
+        <EditText
+            android:id="@+id/inputEmail"
+            android:layout_width="360dp"
+            android:layout_height="64dp"
+
+            android:textColor="@color/black"
+            android:textSize="20dp"></EditText>
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@id/inputPassWord1"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/inputEmail1"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:hint="Type your Password"
+        app:passwordToggleEnabled="true"
+        app:startIconDrawable="@drawable/ic_baseline_lock_24">
+
+        <EditText
+            android:id="@+id/inputPassWord"
+            android:layout_width="360dp"
+            android:layout_height="71dp"
+            android:inputType="textPassword"
+
+            android:textColor="@color/black"
+            android:textSize="20dp"></EditText>
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputConformPassWord1"
+        android:layout_width="350dp"
+        android:layout_height="81dp"
+        android:layout_below="@id/inputPassWord1"
+        android:layout_marginLeft="30dp"
+        android:hint="Conform Passowrd"
+        android:layout_marginTop="10dp"
+        app:passwordToggleEnabled="true"
+        app:startIconDrawable="@drawable/ic_baseline_lock_24">
+
+
+        <EditText
+            android:id="@+id/inputConformPassWord"
+            android:layout_width="360dp"
+            android:layout_height="61dp"
+
+            android:inputType="textPassword"
+            android:textColor="@color/black"
+            android:textSize="20dp"></EditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/PhoneNo1"
+        android:layout_width="350dp"
+        android:layout_height="81dp"
+        android:layout_below="@id/inputConformPassWord1"
+        android:layout_marginLeft="30dp"
+        android:hint="Phone Number"
+        android:layout_marginTop="10dp"
+        app:passwordToggleEnabled="true"
+        app:startIconDrawable="@drawable/phone">
+
+
+        <EditText
+            android:id="@+id/PhoneNo"
+            android:layout_width="360dp"
+            android:layout_height="61dp"
+            android:inputType="phone"
+            android:textColor="@color/black"
+            android:textSize="20dp"></EditText>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
+
+</RelativeLayout>
