@@ -3,10 +3,15 @@ package com.gokulsundar4545.gokulchat4545;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -67,6 +72,32 @@ public class Register extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         mLoadindBar = new ProgressDialog(Register.this);
         btnRegister = findViewById(R.id.btnRegistration);
+
+        //==========================================================================================================
+
+        ConnectivityManager connectivityManager=(ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo=connectivityManager.getActiveNetworkInfo();
+
+        if (networkInfo==null||!networkInfo.isConnected()||!networkInfo.isAvailable())
+        {
+            Dialog dialog=new Dialog(this);
+            dialog.setContentView(R.layout.inter_alart);
+            dialog.setCancelable(false);
+            dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT,WindowManager.LayoutParams.WRAP_CONTENT);
+            dialog.getWindow().getAttributes().windowAnimations= android.R.style.Animation_Dialog;
+            Button Button;
+            Button = dialog.findViewById(R.id.Button);
+            Button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    recreate();
+
+                }
+            });
+
+            dialog.show();
+        }
+        //=============================================================================================================
 
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
@@ -133,12 +164,14 @@ public class Register extends AppCompatActivity {
                                     finish();
 
                                 } else if (task.getException() != null) {
+                                    mLoadindBar.dismiss();
                                     Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
                                 }
 
                             }
                         });
                     } else if (task.getException() != null) {
+                        mLoadindBar.dismiss();
 
                         Toast.makeText(Register.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }

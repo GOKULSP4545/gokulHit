@@ -65,12 +65,39 @@ public class Login extends AppCompatActivity {
         progress_Bar = findViewById(R.id.progressBar);
 
 
+        //============================================================================================================
+
+        ConnectivityManager connectivityManager=(ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo=connectivityManager.getActiveNetworkInfo();
+
+        if (networkInfo==null||!networkInfo.isConnected()||!networkInfo.isAvailable())
+        {
+            Dialog dialog=new Dialog(this);
+            dialog.setContentView(R.layout.inter_alart);
+            dialog.setCancelable(false);
+            dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT,WindowManager.LayoutParams.WRAP_CONTENT);
+            dialog.getWindow().getAttributes().windowAnimations= android.R.style.Animation_Dialog;
+            Button Button;
+            Button = dialog.findViewById(R.id.Button);
+            Button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    recreate();
+
+                }
+            });
+
+            dialog.show();
+        }
+        //=============================================================================================================
+
+
 
 
         ForgetPassWord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Login.this, ForgotPasswort.class);
+                Intent intent = new Intent(Login.this, ResetPassword.class);
                 startActivity(intent);
 
             }
@@ -98,38 +125,40 @@ public class Login extends AppCompatActivity {
     }
 
 
-    private void checkCredentials() {
+    private void checkCredentials () {
 
 
         String Email = edtUserEamil.getText().toString();
-        String Password = edtUserEamil.getText().toString();
+        String password = edtUserPassword.getText().toString();
 
 
         if (Email.isEmpty() || !Email.contains("@")) {
-            showError(edtUserEamil, "Email is invalid");
-        } else if (Password.isEmpty()){
-            showError(edtUserPassword, "Enter a Strong password");
+            showError(edtUserEamil, "Email is inValid");
+        } else if (password.isEmpty() || password.length() < 7) { ;
+            showError(edtUserPassword, "passWord in must be 7Characters");
         } else {
             mLoadingBar.setTitle("Login");
-            mLoadingBar.setMessage("Please Wait,While check Your Credentials");
-            mLoadingBar.setCanceledOnTouchOutside(false);
+            mLoadingBar.setMessage("Please Waite,While check Your Credentials");
             mLoadingBar.show();
 
-            mAuth.signInWithEmailAndPassword(Email, Password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            mAuth.signInWithEmailAndPassword(Email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        Toast.makeText(Login.this, "Login Successfully", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Login.this, "Successfully Login", Toast.LENGTH_SHORT).show();
+                        mLoadingBar.dismiss();
 
 
-                        Intent intent = new Intent(Login.this, Chatlist.class);
+
+                        Intent intent=new Intent(Login.this,Chatlist.class);
                         startActivity(intent);
                         finish();
 
 
-                    } else {
-                        Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                    else {
                         mLoadingBar.dismiss();
+                        Toast.makeText(getApplicationContext(),task.getException().getMessage(),Toast.LENGTH_LONG).show();
                     }
 
                 }

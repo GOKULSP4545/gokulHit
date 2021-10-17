@@ -5,46 +5,56 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Chatlist"
-    android:orientation="vertical">
-
+    >
 
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/Toolbar"
-        android:background="@color/purple_500"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        ></androidx.appcompat.widget.Toolbar>
+        android:background="@drawable/btnsq"
+        android:layout_height="60dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/dp"
+            android:layout_width="70dp"
+            android:layout_height="55dp"
+            android:src="@drawable/ppi"
+            app:civ_border_color="@color/black"
+
+            ></de.hdodenhof.circleimageview.CircleImageView>
+
+
+        <TextView
+            android:id="@+id/loginname"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:gravity="center|left"
+            android:textColor="@color/white"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/font1"
+            android:textSize="20dp" ></TextView>
 
 
 
 
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/dp"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        app:civ_border_width="2dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
-        app:civ_border_color="@color/red"
-        android:src="@drawable/ppi"
-        ></de.hdodenhof.circleimageview.CircleImageView>
+    </androidx.appcompat.widget.Toolbar>
 
 
-    <TextView
-        android:id="@+id/loginname"
-        android:layout_width="250dp"
-        android:gravity="center|left"
-        android:textSize="25dp"
-        android:layout_below="@id/dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/white"
-        android:layout_height="50dp">
 
-    </TextView>
+<com.google.android.material.tabs.TabLayout
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:layout_below="@+id/Toolbar"
+    android:background="@drawable/btnsq"
+    android:id="@+id/tablayout"
 
-
+    ></com.google.android.material.tabs.TabLayout>
+<androidx.viewpager.widget.ViewPager
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/Viewpage"
+    android:layout_below="@+id/tablayout"
+    ></androidx.viewpager.widget.ViewPager>
 
 </RelativeLayout>

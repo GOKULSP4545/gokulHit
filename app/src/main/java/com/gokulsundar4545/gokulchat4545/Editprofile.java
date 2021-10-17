@@ -79,7 +79,7 @@ public class Editprofile extends AppCompatActivity {
             }
         });
 
-        ProfileChangeBtn.setOnClickListener(new View.OnClickListener() {
+        ProfileImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 CropImage.activity().setAspectRatio(1,1).start(Editprofile.this);

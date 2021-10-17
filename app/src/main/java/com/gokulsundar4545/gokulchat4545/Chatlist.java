@@ -2,6 +2,7 @@ package com.gokulsundar4545.gokulchat4545;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -15,9 +16,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -34,16 +37,22 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Chatlist extends AppCompatActivity {
 
+    private androidx.appcompat.widget.Toolbar  toolbar;
+    private de.hdodenhof.circleimageview.CircleImageView ProfileImageView;
+    private TextView txtName;
 
-    FirebaseUser firebaseUser;
-    DatabaseReference databaseReference;
-    TextView name;
-    FirebaseAuth mAuth;
-    FirebaseStorage firebaseStorage;
-    StorageReference storageReference;
-    CircleImageView profile_home;
+    private FirebaseAuth mAuth;
+    private DatabaseReference databaseReference;
 
-    androidx.appcompat.widget.Toolbar  toolbar;
+    //==================================================================================================================
+    //Fragement
+    androidx.viewpager.widget.ViewPager ViewPager;
+    com.google.android.material.tabs.TabLayout tablayout;
+    PageAdapter pageAdapter;
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,69 +60,121 @@ public class Chatlist extends AppCompatActivity {
         setContentView(R.layout.activity_chatlist);
 
 
-        name=findViewById(R.id.loginname);
-        profile_home=findViewById(R.id.profile_image);
+        txtName=findViewById(R.id.loginname);
+        ProfileImageView=findViewById(R.id.dp);
+
+        tablayout=findViewById(R.id.tablayout) ;
+        ViewPager=findViewById(R.id.Viewpage);
         toolbar=findViewById(R.id.Toolbar);
         setSupportActionBar(toolbar);
 
+        tablayout.addTab(tablayout.newTab().setText("CHATS"));
+        tablayout.addTab(tablayout.newTab().setText("STATUS"));
+        tablayout.addTab(tablayout.newTab().setText("CALL"));
 
-        firebaseUser= FirebaseAuth.getInstance().getCurrentUser();
-        databaseReference= FirebaseDatabase.getInstance().getReference("users");
-        String Userid=firebaseUser.getUid();
+        tablayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
+        PageAdapter pageAdapter=new PageAdapter(getSupportFragmentManager(),tablayout.getTabCount());
 
-        databaseReference.child(Userid).addListenerForSingleValueEvent(new ValueEventListener() {
+        ViewPager.setAdapter(pageAdapter);
+        ViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tablayout));
+
+        tablayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-               UserClass Userclass=snapshot.getValue(UserClass.class);
-                if (Userclass !=null)
-                {
-                    String firstname=Userclass.getUsername();
-                    name.setText(firstname);
-                }
+            public void onTabSelected(TabLayout.Tab tab) {
+
+                ViewPager.setCurrentItem(tab.getPosition());
+
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+            public void onTabUnselected(TabLayout.Tab tab) {
 
-            }
-        });
-
-
-
-
-
-
-//to dispaly User Profile
-
-
-        databaseReference=FirebaseDatabase.getInstance().getReference().child("users");
-        storageReference=firebaseStorage.getInstance().getReference().child("Profilepics");
-
-        databaseReference.child(Userid).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()&& snapshot.getChildrenCount()>0)
-                {
-                    if (snapshot.hasChild("image"))
-                    {
-                        String image=snapshot.child("image").getValue().toString();
-                        Picasso.get().load(image).into(profile_home);
-                    }
-                }
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+            public void onTabReselected(TabLayout.Tab tab) {
 
             }
         });
+
+
+
+        mAuth=FirebaseAuth.getInstance();
+        databaseReference=FirebaseDatabase.getInstance().getReference().child("User");
+
+        //==================================================================================================================
+
+        ConnectivityManager connectivityManager=(ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo=connectivityManager.getActiveNetworkInfo();
+
+        if (networkInfo==null||!networkInfo.isConnected()||!networkInfo.isAvailable())
+        {
+            Dialog dialog=new Dialog(this);
+            dialog.setContentView(R.layout.inter_alart);
+            dialog.setCancelable(false);
+            dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT,WindowManager.LayoutParams.WRAP_CONTENT);
+            dialog.getWindow().getAttributes().windowAnimations= android.R.style.Animation_Dialog;
+            Button Button;
+            Button = dialog.findViewById(R.id.Button);
+            Button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    recreate();
+
+                }
+            });
+
+            dialog.show();
+        }
+        //=======================================================================================================================
+
+
+        getUserinfo();
+
+
+
+
+
+
+
+
 
 
     }
 
 
+//================================================================================================================================
 
+    //to dispaly User Profile
+
+    private void getUserinfo() {
+
+        databaseReference.child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange( DataSnapshot dataSnapshot) {
+                if(dataSnapshot.exists() && dataSnapshot.getChildrenCount() >0){
+
+                    String name=dataSnapshot.child("username").getValue().toString();
+                    txtName.setText(name);
+
+
+                    if(dataSnapshot.hasChild("image"))
+                    {
+
+                        String image=dataSnapshot.child("image").getValue().toString();
+                        Picasso.get().load(image).into(ProfileImageView);
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled( DatabaseError error) {
+
+            }
+        });
+    }
 
 
     @Override
