@@ -13,14 +13,14 @@
         android:layout_height="100dp"
         android:src="@drawable/ppi"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="140dp"
 
 
         />
 
     <Button
         android:id="@+id/btnClose"
-        android:layout_width="150dp"
+        android:layout_width="100dp"
         android:layout_height="50dp"
         android:background="@drawable/broderblue"
         android:text="Close"
@@ -28,21 +28,21 @@
         android:fontFamily="@font/font1"
         android:textStyle="italic"
         android:layout_below="@+id/profile_image"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="50dp"
         ></Button>
     <Button
         android:id="@+id/btnSave"
-        android:layout_width="150dp"
+        android:layout_width="100dp"
         android:layout_height="50dp"
-        android:background="@drawable/bdblue"
+        android:background="@drawable/broderred"
         android:text="Save"
         android:gravity="center"
         android:fontFamily="@font/font1"
         android:textStyle="italic"
         android:layout_below="@+id/profile_image"
         android:layout_marginLeft="225dp"
-        android:layout_marginTop="80dp"></Button>
+        android:layout_marginTop="50dp"></Button>
 
     <TextView
         android:id="@+id/change_profile_btn"
@@ -51,10 +51,22 @@
         android:text="Tap to change profile"
         android:fontFamily="@font/font1"
         android:textSize="20dp"
-        android:layout_below="@+id/profile_image"
+        android:layout_below="@+id/settings"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
         android:textStyle="italic"
         android:textColor="@color/black"></TextView>
+    <TextView
+        android:id="@+id/settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Settings"
+        android:fontFamily="@font/font1"
+        android:textSize="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:textStyle="italic"
+        android:textColor="@color/blue"></TextView>
+
 
 </RelativeLayout>

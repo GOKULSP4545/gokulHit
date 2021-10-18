@@ -4,44 +4,71 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backgroungsplash"
     tools:context=".MainActivity">
 
-
-    <TextView
-        android:id="@+id/titlesplash"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="GOKUL HIT"
-        android:gravity="center"
-        android:textColor="@color/white"
-        android:fontFamily="@font/font1"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="200dp"
-        ></TextView>
-
-
-    <TextView
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:text="Welcome to our App"
-        android:gravity="right|center"
-        android:textColor="@color/black"
-        android:layout_below="@id/titlesplash"
-        android:textSize="20dp"
-        android:layout_marginLeft="200dp"
-        android:layout_marginTop="420dp"
-        ></TextView>
-
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:background="@drawable/ic_baseline_person_24"
-        android:layout_marginLeft="300dp"
+        android:id="@+id/Splachimage"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:src="@drawable/heart"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"
+
+
+
+        ></ImageView>
+
+
+    <TextView
+        android:id="@+id/Txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome to our App"
+        android:textSize="15dp"
+        android:fontFamily="@font/font1"
+        android:textColor="@color/black"
+        android:layout_below="@id/Splachimage"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+
+
+
+
+        ></TextView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="From"
+        android:textSize="18dp"
+        android:fontFamily="@font/font1"
+        android:textColor="@color/black"
+        android:layout_below="@id/Txt"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
-        ></ImageView>
+        android:id="@+id/Txt1"
+
+
+
+
+        ></TextView>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Gokul"
+        android:textSize="18dp"
+        android:fontFamily="@font/font1"
+        android:textColor="@color/red"
+        android:layout_below="@id/Txt1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+
+
+
+
+        ></TextView>
+
+
 
 </RelativeLayout>
